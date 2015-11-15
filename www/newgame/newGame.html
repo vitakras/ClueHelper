@@ -1,0 +1,28 @@
+<ion-view view-title="New Game">
+  <ion-content>
+    <!-- Adds new Player -->
+    <div class="item item-input-inset">
+      <label class="item-input-wrapper">
+        <input type="text" placeholder="Player Name" ng-model="newgame.player">
+      </label>
+      <button class="button button-small button-calm" ng-click="newgame.addPlayer()">
+        Add Player
+      </button>
+    </div>
+    <!-- Displays Players Names -->
+    <div class="list">
+      <div class="item item-button-left" ng-repeat="playerName in newgame.players">
+      <button class="button button-assertive" ng-click="newgame.removePlayer($index)">
+        <i class="icon ion-ios-trash"></i>
+      </button>
+      {{ playerName }}
+      </div>
+    </div>
+  </ion-content>
+  <!-- Submit button -->
+  <ion-footer-bar class="bar bar-balanced">
+	<div class="button-bar">
+    <button class="button button-clear" ng-click="newgame.createNewGame()">Create New Game</button>
+	</div>
+</ion-footer-bar>
+</ion-view>
