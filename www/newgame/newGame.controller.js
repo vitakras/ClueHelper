@@ -2,9 +2,9 @@
 	'use strict';
 	
 	angular.module('ClueHelper')
-		.controller('NewGameController', NewGameController);
+		.controller('NewGameController', ['$state', '$ionicHistory','ClueService', NewGameController]);
 		
-	function NewGameController() {
+	function NewGameController($state,$ionicHistory, clueService) {
 		// variables
 		var vm = this;
 		vm.players = [];
@@ -27,7 +27,17 @@
       	};
 		
 		function createNewGame() {
-			console.log("game created");
+			var pass = clueService.createNewGame(vm.players);
+			
+			if (pass) {
+				vm.players = [];
+				
+				console.log("game created");
+				$ionicHistory.nextViewOptions({
+  					disableBack: true
+				});
+				$state.go('app.home');
+			}
 		}
 	};
 })();
