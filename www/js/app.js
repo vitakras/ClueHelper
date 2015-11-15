@@ -37,6 +37,15 @@ angular.module('ClueHelper', ['ionic'])
           controller: 'NewGameController as newgame'
         }
       }
+   })
+   .state('app.home', {
+     url: '/home',
+     views: {
+       'menuContent' : {
+         templateUrl: 'home/home.html',
+         controller: 'HomeController as home'
+       }
+     }
    });
   
   // if none of the above states are matched, use this as the fallback
