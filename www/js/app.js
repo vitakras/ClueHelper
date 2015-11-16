@@ -57,6 +57,16 @@ angular.module('ClueHelper', ['ionic'])
          controller: 'AddCardController as addcard'
        }
      }
+   })
+   .state('app.addmove', {
+     cache: false,
+     url: '/addmove',
+     views: {
+       'menuContent' : {
+         templateUrl: 'addmove/addmove.html',
+         controller: 'AddMoveController as addmove'
+       }
+     }
    });
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/newgame');

@@ -25,10 +25,15 @@
 		// Functions
 		vm.getColor = getColor;
 		vm.goToAddCard = goToAddCard;
+		vm.goToAddMove = goToAddMove;
+		
+		function goToAddMove () {
+			$state.go('app.addmove');
+		};
 		
 		function goToAddCard () {
 			$state.go('app.addcard');
-		}
+		};
 		
 			
 		function getColor(state) {

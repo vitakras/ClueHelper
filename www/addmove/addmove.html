@@ -1,0 +1,73 @@
+<ion-view view-title="Add Move">
+  <ion-content>
+    <!-- Lets you select the player-->
+	  <label class="item item-input item-select">
+		  <div class="input-label">Player</div>
+		    <select ng-options="player as player.name for player in addmove.players" 
+			     ng-model="addmove.selectedPlayer"></select>	 
+	  </label>
+    
+    <div class="item item-divider">
+      Cards
+  	</div>
+    
+    <!-- Lets you select the person card -->
+	  <label class="item item-input item-select">
+      <div class="input-label">Person</div>
+      <select ng-options="name as name for name in addmove.peopleCards" 
+        ng-model="addmove.selectedPerson"></select>	 
+    </label>
+    
+    <!-- Lets you select the weapon card -->
+    <label class="item item-input item-select">
+      <div class="input-label">Weapon</div>
+      <select ng-options="name as name for name in addmove.weaponCards" 
+        ng-model="addmove.selectedWeapon"></select>	 
+    </label>
+    
+    <!-- Lets you select the room card -->
+    <label class="item item-input item-select">
+      <div class="input-label">Room</div>
+      <select ng-options="name as name for name in addmove.roomCards" 
+        ng-model="addmove.selectedRoom"></select>	 
+    </label>
+    
+    <div class="item item-divider">
+      People
+  	</div>
+    
+    <!-- Adds new Player Move -->
+    <label class="item item-input item-select">
+      <div class="input-label">Player</div>
+		    <select ng-options="player as player.name for player in addmove.players" 
+			     ng-model="addmove.movePlayer"></select>	 
+    </label>  
+    <div class="button-bar">
+      <button class="button button-block button-calm" ng-click="addmove.addMove(true)">
+        Pass
+      </button>
+      <button class="button button-block button-balanced" ng-click="addmove.addMove(false)">
+        Show
+      </button>	
+    </div>
+   
+    <div class="item item-divider">
+      Moves
+  	</div>
+    
+    <div class="list">
+      <div class="item item-button-left" ng-repeat="move in addmove.moves">
+      <button class="button button-assertive" ng-click="addmove.removeMove($index)">
+        <i class="icon ion-ios-trash"></i>
+      </button>
+      {{ move.person.name }}<span class="card-state {{addmove.getColor(move.moveType)}}"></span>
+      </div>
+    </div>
+    
+  </ion-content>
+  <ion-footer-bar class="bar bar-balanced">
+	   <div class="button-bar">
+        <button class="button button-clear" ng-click="addmove.addTurn()">Add Move</button>
+	   </div>
+   </ion-footer-bar>
+</ion-view>

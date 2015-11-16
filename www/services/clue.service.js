@@ -23,6 +23,17 @@
 		vm.getClueCardByType = getClueCardByType;
 		vm.getCardNamesByType = getCardNamesByType;
 		vm.addCard = addCard;
+		vm.addTurn = addTurn;
+		vm.getPlayers = getPlayers; // returns a list of players
+		
+		function getPlayers() {
+			return vm.players;
+		}
+		
+		function addTurn(turn) {
+			vm.game.addTurn(turn);
+			vm.game.updateCards();
+		}
 		
 		function addCard(playerName, cardName) {
 			var added = false;
