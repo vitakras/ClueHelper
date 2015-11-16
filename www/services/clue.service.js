@@ -21,6 +21,33 @@
 		vm.gameExists = gameExists;
 		vm.getPlayerCards = getPlayerCards; // returns cards of players and global
 		vm.getClueCardByType = getClueCardByType;
+		vm.getCardNamesByType = getCardNamesByType;
+		vm.addCard = addCard;
+		
+		function addCard(playerName, cardName) {
+			var added = false;
+			
+			if (playerName == globalCardsName) {
+				added = true;
+				vm.game.setCardState(cardName, cardState.OWN);
+			} else {
+				var length = vm.players.length;
+				for (var i = 0; i < length; i++){
+					if (vm.players[i].name == playerName) {
+						added = true;
+						vm.players[i].setCardState(cardName, cardState.OWN);
+						break;
+					}
+				}
+			}
+			
+			// recalculates everything if card was added
+			if (added) {
+				vm.game.updateCards();
+			}
+			
+			return added;
+		}
 		
 		/**
 		 * name of the person
@@ -116,6 +143,10 @@
 				}
 				
 				vm.game = new ClueGame(vm.players);
+				/*
+				vm.game.setCardState(cardName.Scarllet,cardState.ENVELOPE);
+				vm.game.setCardState(cardName.Game_Room,cardState.OWN);
+				vm.game.setCardState(cardName.Kitchen,cardState.NOT_OWN); */
 				return true;
 			}
 		}
@@ -123,6 +154,20 @@
 		// Returns an array of cards in the game
 		function getGameCards () {
 			return vm.cards;
+		}
+		
+		// Returns a list of card Names based on type
+		function getCardNamesByType(cardType) {
+			var length = vm.cardNames.length;
+			var cards = [];
+			
+			for (var i = 0; i < length; i++) {
+				if(vm.cards[vm.cardNames[i]].type == cardType) {
+					cards.push(vm.cardNames[i]);
+				}
+			}
+			
+			return cards;
 		}
 	}	
 })();

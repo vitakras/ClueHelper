@@ -2,9 +2,9 @@
 	'use strict';
 	
 	angular.module('ClueHelper')
-		.controller('HomeController', ['ClueService', HomeController]);
+		.controller('HomeController', ['$state', 'ClueService', HomeController]);
 		
-	function HomeController(clueService) {
+	function HomeController($state, clueService) {
 		// Variables
 		var vm = this;
 		vm.names = clueService.getPlayerNames();
@@ -13,7 +13,6 @@
 		
 		// setup players variable
 		vm.players = [];
-		
 		for (var i = 0, length = vm.names.length; i < length; i++) {
 			vm.players.push({
 				name : vm.names[i],
@@ -22,25 +21,16 @@
 				clueRooms : clueService.getClueCardByType(vm.names[i], cardTypes.ROOM)
 			});
 		}
-		
-		// return {name,state}
-		/*
-		vm.cluePeople = clueService.getClueCardByType(vm.names[0], cardTypes.PERSON);
-		vm.clueWeapons = clueService.getClueCardByType(vm.names[0], cardTypes.WEAPON);
-		vm.clueRooms = clueService.getClueCardByType(vm.names[0], cardTypes.ROOM); */
+
+		// Functions
 		vm.getColor = getColor;
-		vm.updateSelectedPlayer = updateSelectedPlayer;
+		vm.goToAddCard = goToAddCard;
 		
-		function updateSelectedPlayer () {
-			console.log(vm.selectedName);
-			
-			
-			//vm.cluePeople = clueService.getClueCardByType(vm.selectedName, cardTypes.PERSON);
-			//vm.clueWeapons = clueService.getClueCardByType(vm.selectedName, cardTypes.WEAPON);
-			//vm.clueRooms = clueService.getClueCardByType(vm.selectedName, cardTypes.ROOM);
+		function goToAddCard () {
+			$state.go('app.addcard');
 		}
 		
-		//Functions	
+			
 		function getColor(state) {
 			var css = "";
 			switch(state) {

@@ -1,0 +1,42 @@
+<ion-view view-title="Add Card">
+  <ion-content>
+    <!-- Lets you select the player-->
+	<label class="item item-input item-select">
+		<div class="input-label">Player</div>
+		<select ng-options="name as name for name in addcard.names" 
+			ng-model="addcard.selectedName"></select>	 
+	</label>
+	<!-- Lets you select the card type -->
+	<label class="item item-input item-select">
+		<div class="input-label">Card Type</div>
+		<select ng-options="cardType.cardType as cardType.name for cardType in addcard.cardTypes" 
+			ng-model="addcard.selectedType"></select>	 
+	</label>
+	
+	<!-- Lets you select the person card -->
+	<label class="item item-input item-select" ng-show="addcard.isActiveCard(addcard.cardTypes[0].cardType)">
+		<div class="input-label">Person</div>
+		<select ng-options="name as name for name in addcard.peopleCards" 
+			ng-model="addcard.selectedCard"></select>	 
+	</label>
+	
+	<!-- Lets you select the weapon card -->
+	<label class="item item-input item-select" ng-show="addcard.isActiveCard(addcard.cardTypes[1].cardType)">
+		<div class="input-label">Weapon</div>
+		<select ng-options="name as name for name in addcard.weaponCards" 
+			ng-model="addcard.selectedCard"></select>	 
+	</label>
+	
+	<!-- Lets you select the room card -->
+	<label class="item item-input item-select" ng-show="addcard.isActiveCard(addcard.cardTypes[2].cardType)">
+		<div class="input-label">Room</div>
+		<select ng-options="name as name for name in addcard.roomCards" 
+			ng-model="addcard.selectedCard"></select>	 
+	</label>
+  </ion-content>
+  <ion-footer-bar class="bar bar-balanced">
+	<div class="button-bar">
+    	<button class="button button-clear" ng-click="addcard.addCard()">Add Card</button>
+	</div>
+   </ion-footer-bar>
+</ion-view>
