@@ -36,7 +36,8 @@
 				$ionicHistory.nextViewOptions({
   					disableBack: true
 				});
-				$state.go('app.home');
+				
+				$state.go('app.home',{cache: false}, {reload: true});
 			}
 		}
 	};

@@ -39,6 +39,7 @@ angular.module('ClueHelper', ['ionic'])
       }
    })
    .state('app.home', {
+     cache: false,
      url: '/home',
      views: {
        'menuContent' : {
@@ -47,8 +48,11 @@ angular.module('ClueHelper', ['ionic'])
        }
      }
    });
-  
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/newgame');
-});
+}).run(['$location', 'ClueService', function($location, clueService){
+  if(!clueService.gameExists()) {
+    $location.path('/app/newgame'); 
+  }
+}]);
 

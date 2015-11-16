@@ -1,5 +1,40 @@
 <ion-view view-title="Clue Journal">
 	<ion-content>
-		<h2 ng-repeat="name in home.cards"> {{name}}</h2>
+		<!-- Lets you select the player-->
+		<label class="item item-input item-select">
+			<div class="input-label">Player</div>
+			<select ng-options="name as name for name in home.names" ng-model="home.selectedName" ng-selected="home.updateSelectedPlayer()">
+    		</select>	 
+		</label>
+		
+		<!-- Items for each player-->
+		<div ng-repeat="player in home.players">
+		<ul class="list" ng-show="player.name == home.selectedName">
+			<div class="item item-divider">
+    			People
+  			</div>
+    		<li class="item" ng-repeat="person in player.cluePeople">
+				{{ person.name }}<span class="card-state {{home.getColor(person.state)}}"></span>
+    		</li>
+			<div class="item item-divider">
+    			Weapons
+  			</div>
+			<li class="item" ng-repeat="weapon in player.clueWeapons">
+				{{ weapon.name }}<span class="card-state {{home.getColor(weapon.state)}}"></span>
+    		</li>
+			<div class="item item-divider">
+    			Rooms
+  			</div>
+			<li class="item" ng-repeat="room in player.clueRooms">
+				{{ room.name }}<span class="card-state  {{home.getColor(room.state)}}"></span>
+    		</li>
+		</ul>
+		</div>
 	</ion-content>
+	<ion-footer-bar class="bar-positive">
+  		<div class="button-bar">
+    		<button class="button button-clear">Add Card</button>
+			<button class="button button-clear">Add Move</button>
+ 		 </div>
+	</ion-footer-bar>	
 </ion-view>
